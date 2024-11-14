@@ -43,9 +43,8 @@ def main():
     graph.add_page(pageB4)
     graph.add_page(pageC4)
     graph.link_pages(pageA4, pageB4)
-    graph.link_pages(pageB4, pageA4)
     graph.link_pages(pageB4, pageC4)
-    graph.link_pages(pageA4, pageC4)
+
 
     # Calculate PageRank
     graph.calculate_page_rank()
