@@ -3,10 +3,10 @@ name: Python CI RankingPage
 on:
   push:
     branches:
-      - main  # Der Workflow wird bei einem Push auf den main-Branch ausgelöst
+      - main
   pull_request:
     branches:
-      - main  # Der Workflow wird bei einem Pull Request auf den main-Branch ausgelöst
+      - main
 
 jobs:
   test:
@@ -19,7 +19,7 @@ jobs:
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v2  # Holt den Code aus dem Repository
+      uses: actions/checkout@v3  # Holt den Code aus dem Repository
 
     - name: Set up Python
       uses: actions/setup-python@v4  # Richtet die angegebene Python-Version ein
