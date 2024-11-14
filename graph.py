@@ -11,9 +11,9 @@ class Graph:
         from_page.add_out_link(to_page)
         to_page.add_in_link(from_page)
 
-    def calculate_page_rank(self, damping_factor=0.85, iterations=15):
+    def calculate_page_rank(self, damping_factor=0.85, iterations=15, startwert=1):
         for page in self.pages:
-            page.page_rank = 1.0
+            page.page_rank = startwert
 
         # Single iteration to update PageRank values
         for _ in range(iterations):
