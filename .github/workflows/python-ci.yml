@@ -14,25 +14,31 @@ jobs:
 
     strategy:
       matrix:
-        python-version: [3.8, 3.9, 3.10, 3.11, 3.12]  # Die nicht unterstützte 3.1-Version wurde entfernt
+        python-version: [3.8, 3.9, 3.10, 3.11, 3.12]
         os: [ubuntu-latest, windows-latest, macos-latest]
-
-
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v3  # Holt den Code aus dem Repository
+      uses: actions/checkout@v3
 
     - name: Set up Python
-      uses: actions/setup-python@v4  # Richtet die angegebene Python-Version ein
+      uses: actions/setup-python@v4
       with:
         python-version: ${{ matrix.python-version }}
+
+    - name: Cache Python packages
+      uses: actions/cache@v3
+      with:
+        path: ~/.cache/pip
+        key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+        restore-keys: |
+          ${{ runner.os }}-pip-
 
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install -r requirements.txt  # Installiere die Abhängigkeiten aus der requirements.txt
+        pip install -r requirements.txt
 
     - name: Run tests
       run: |
-        pytest  # Führe die Tests mit pytest aus
+        pytest
